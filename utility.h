@@ -1,7 +1,6 @@
 #ifndef UTILITY_H
 #define UTILITY_H
-
-typedef enum {false,true} bool;
+#include <stdbool.h>
 
 typedef struct {
     int id;
