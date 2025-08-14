@@ -14,6 +14,7 @@ int getLineCount(FILE *fp,char *listName);
 FILE *createList(const char listName[512]);
 void addTodo(const char *listName,Todo todo);
 void deleteTodo(const char *listName, int todoId);
+void deleteAll(const char *listName);
 void markDone(const char *listName, int todoId);
 void markUndone(const char *listName, int todoId);
 void listTodo(const char *listName);

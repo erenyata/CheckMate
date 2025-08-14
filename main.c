@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     const char *listName = "todo.txt";
 
-    // En az 2 argüman gerekli
+    // at least two arguments needed
     if(argc < 2){
         printf("USAGE: ./checkmate (add,delete,list,done,undone) (string or line id)\n");
         return -1;
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
         Todo todo;
         todo.id = getNextId(listName);
 
-        // argv[2]’yi güvenli þekilde kopyala
+        // copy argv[2]
         todo.todoDesc = malloc(strlen(argv[2]) + 1);
         if(!todo.todoDesc){
             printf("Memory allocation failed.\n");
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
         addTodo(listName, todo);
 
-        free(todo.todoDesc); // hafýzayý temizle
+        free(todo.todoDesc); // avoid memory leak
 
     } else if(strcmp(argv[1],"delete") == 0 || strcmp(argv[1],"done") == 0 || strcmp(argv[1],"undone") == 0){
         if(argc != 3){
@@ -46,6 +46,8 @@ int main(int argc, char *argv[])
         }
 
         int id = atoi(argv[2]);
+
+        // check if todo id is valid
         if(id <= 0){
             printf("Invalid ID.\n");
             return -1;
@@ -61,6 +63,9 @@ int main(int argc, char *argv[])
 
     } else if(strcmp(argv[1],"list") == 0){
         listTodo(listName);
+
+    }else if(strcmp(argv[1],"clear")==0){
+        deleteAll(listName);
 
     } else {
         printf("Unknown Command.\nUSAGE: ./checkmate (add,delete,list,done,undone) (string or line id)\n");

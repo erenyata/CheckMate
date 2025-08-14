@@ -78,6 +78,29 @@ void deleteTodo(const char *listName, int todoId){
     }
 }
 
+void deleteAll(const char *listName){
+    FILE *fp;
+    fp = fopen(listName,"r");
+    FILE *temp;
+    temp = fopen("temp.txt","w");
+    if(fp == NULL || temp == NULL){
+        printf("Can not open file.");
+        return;
+    }else {
+
+        char line[512];
+        while(fgets(line, sizeof(line), fp) != NULL){
+            fputs("", temp); // write remaining
+        }
+        fclose(fp);
+        fclose(temp);
+
+        remove(listName);
+        rename("temp.txt", listName);
+
+    }
+}
+
 void markDone(const char *listName, int todoId){
     FILE *fp = fopen(listName,"r");
     FILE *temp = fopen("temp.txt","w");
