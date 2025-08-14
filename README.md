@@ -31,6 +31,7 @@ gcc main.c utility.c -o checkmate
  - `done <task_id>` → Marks a task as done
  - `undone <task_id>` → Marks a task as not done
  - `list` → Lists all tasks
+ - `clear` → Clears all tasks
 
 ## Examples
 ```bash
